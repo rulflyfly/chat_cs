@@ -5,14 +5,16 @@
       "Text": "sample text 1",
       "Likes": [
         { "Author": "User_B" }
-      ]
+      ],
+      "NSFW": true
     },
     {
       "Author": "User_B",
       "Text": "sample text 2",
       "Likes": [
         { "Author": "User_A" }
-      ]
+      ],
+      "NSFW": true
     },
     {
       "Author": "User_A",
@@ -20,12 +22,14 @@
       "Likes": [
         { "Author": "User_B" },
         { "Author": "User_A" }
-      ]
+      ],
+      "NSFW": true
     },
     {
       "Author": "User_B",
       "Text": "There are many variations of passages of Lorem Ipsum available.",
-      "Likes": []
+      "Likes": [],
+      "NSFW": false
     }
   ]
 }

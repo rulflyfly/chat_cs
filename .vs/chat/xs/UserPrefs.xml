@@ -1,29 +1,27 @@
 ﻿<Properties StartupConfiguration="{E34D256C-135B-4BEC-883B-9EADC6BD28CD}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="chat/data/chat-data.json">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="chat/Logger.cs">
     <Files>
-      <File FileName="chat/Program.cs" Line="22" Column="1" />
-      <File FileName="chat/data/chat-data.json" Line="28" Column="17" />
-      <File FileName="chat/Message.cs" Line="4" Column="66" />
-      <File FileName="chat/Like.cs" Line="4" Column="40" />
-      <File FileName="chat/ChatData.cs" Line="7" Column="1" />
-      <File FileName="chat/Logger.cs" Line="19" Column="52" />
-      <File FileName="chat/domain/Chat.cs" Line="24" Column="1" />
+      <File FileName="chat/ChatRepository.cs" Line="12" Column="1" />
+      <File FileName="chat/Logger.cs" Line="55" Column="14" />
+      <File FileName="chat/domain/ChatService.cs" Line="2" Column="1" />
+      <File FileName="chat/domain/Chat.cs" Line="9" Column="1" />
+      <File FileName="chat/domain/Like.cs" Line="2" Column="1" />
+      <File FileName="chat/domain/Message.cs" Line="8" Column="1" />
+      <File FileName="chat/Program.cs" Line="49" Column="18" />
+      <File FileName="chat/domain/User.cs" Line="7" Column="1" />
+      <File FileName="chat/data/chat-data.json" Line="16" Column="9" />
+      <File FileName="chat/Utils.cs" Line="6" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="chat" expanded="True">
             <Node name="chat" expanded="True">
-              <Node name="data" expanded="True">
-                <Node name="chat-data.json" selected="True" />
-              </Node>
+              <Node name="data" expanded="True" />
               <Node name="domain" expanded="True" />
+              <Node name="Logger.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -34,4 +32,8 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

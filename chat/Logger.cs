@@ -1,4 +1,6 @@
 ﻿using System;
+using chat.domain;
+
 namespace chat
 {
     public class Logger
@@ -35,6 +37,33 @@ namespace chat
 
             return true;
         }
+
+        public static User LogIn()
+        {
+            Console.WriteLine("Enter your name:");
+
+            var name = Console.ReadLine();
+
+            Console.WriteLine("Enter your age:");
+
+            var age = Console.ReadLine();
+
+            while (!Utils.IsValidNumber(age))
+            {
+                Console.WriteLine("Enter a valid number for age:");
+                age = Console.ReadLine();
+            }
+
+            return new User(name, Int32.Parse(age));
+
+        }
+
+        public static void LogContentIsExplicit()
+        {
+            Console.WriteLine("Explicit content");
+        }
+
+        
     }
 }
 

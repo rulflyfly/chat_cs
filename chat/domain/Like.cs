@@ -1,5 +1,6 @@
 ﻿using System;
-namespace chat
+
+namespace chat.domain
 {
     public record Like (string Author);
 }
