@@ -1,0 +1,31 @@
+﻿{
+  "Messages": [
+    {
+      "Author": "User_A",
+      "Text": "sample text 1",
+      "Likes": [
+        { "Author": "User_B" }
+      ]
+    },
+    {
+      "Author": "User_B",
+      "Text": "sample text 2",
+      "Likes": [
+        { "Author": "User_A" }
+      ]
+    },
+    {
+      "Author": "User_A",
+      "Text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "Likes": [
+        { "Author": "User_B" },
+        { "Author": "User_A" }
+      ]
+    },
+    {
+      "Author": "User_B",
+      "Text": "There are many variations of passages of Lorem Ipsum available.",
+      "Likes": []
+    }
+  ]
+}

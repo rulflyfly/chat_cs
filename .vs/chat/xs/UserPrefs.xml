@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{E34D256C-135B-4BEC-883B-9EADC6BD28CD}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="chat/data/chat-data.json">
+    <Files>
+      <File FileName="chat/Program.cs" Line="22" Column="1" />
+      <File FileName="chat/data/chat-data.json" Line="28" Column="17" />
+      <File FileName="chat/Message.cs" Line="4" Column="66" />
+      <File FileName="chat/Like.cs" Line="4" Column="40" />
+      <File FileName="chat/ChatData.cs" Line="7" Column="1" />
+      <File FileName="chat/Logger.cs" Line="19" Column="52" />
+      <File FileName="chat/domain/Chat.cs" Line="24" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="chat" expanded="True">
+            <Node name="chat" expanded="True">
+              <Node name="data" expanded="True">
+                <Node name="chat-data.json" selected="True" />
+              </Node>
+              <Node name="domain" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
