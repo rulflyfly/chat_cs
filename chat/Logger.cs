@@ -38,24 +38,22 @@ namespace chat
             return true;
         }
 
-        public static User LogIn()
+        public static string GetUserNameFromConsole()
         {
-            Console.WriteLine("Enter your name:");
+            Console.WriteLine("Your name:");
+            return Console.ReadLine();
+        }
 
-            var name = Console.ReadLine();
+        public static string GetUserBirthdayFromConsole()
+        {
+            Console.WriteLine("Your birthday MM/DD/YYYY:");
 
-            Console.WriteLine("Enter your age:");
+            return Console.ReadLine();
+        }
 
-            var age = Console.ReadLine();
-
-            while (!Utils.IsValidNumber(age))
-            {
-                Console.WriteLine("Enter a valid number for age:");
-                age = Console.ReadLine();
-            }
-
-            return new User(name, Int32.Parse(age));
-
+        public static void AskLogDateCorrect()
+        {
+            Console.WriteLine("Type in this format MM/DD/YYYY:");
         }
 
         public static void LogContentIsExplicit()
@@ -63,7 +61,16 @@ namespace chat
             Console.WriteLine("Explicit content");
         }
 
-        
+        public static string TakeAnyInput()
+        {
+            return Console.ReadLine();
+        }
+
+        public static void AllowToChat()
+        {
+            Console.WriteLine("You can chat");
+        }
+
     }
 }
 

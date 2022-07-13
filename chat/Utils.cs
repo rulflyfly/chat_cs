@@ -3,17 +3,26 @@ namespace chat
 {
     public class Utils
     {
-        public static bool IsValidNumber(string num)
+        public static bool IsValidDate(string date)
         {
             try
             {
-                Int32.Parse(num);
+                DateTime.Parse(date);
                 return true;
             }
             catch
             {
                 return false;
             }
+        }
+
+        public static int GetYearsDifference(DateTime start, DateTime end)
+        {
+            DateTime zeroTime = new DateTime(1, 1, 1);
+
+            TimeSpan span = end - start;
+            
+            return (zeroTime + span).Year - 1;
         }
     }
 }

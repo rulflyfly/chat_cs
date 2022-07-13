@@ -25,6 +25,27 @@ namespace chat.domain
             return filtered;
         }
 
+        public static void WriteMessage(User user, string text)
+        {
+            var likes = new List<Like>();
+            var newMessage = new Message(user.Name, text, likes, false);
+            ChatRepository.AddMessageToChatData(newMessage);
+        }
+
+        public static List<Message> CensorMessages(List<Message> messages)
+        {
+            var filtered = new List<Message>();
+
+            foreach (var message in messages)
+            {
+                if (message.NSFW == false)
+                {
+                    filtered.Add(message);
+                }
+            }
+
+            return filtered;
+        }
     }
 }
 

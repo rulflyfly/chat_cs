@@ -15,4 +15,7 @@
     <Folder Include="data\" />
     <Folder Include="domain\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
 </Project>

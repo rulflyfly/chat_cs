@@ -1,6 +1,10 @@
 ﻿using System;
 namespace chat.domain
 {
-    public record User (string Name, int Age);
+    public record User
+    {
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+    };
 }
 
