@@ -1,27 +1,20 @@
 ﻿using System;
-using chat.domain;
 
 namespace chat
 {
     public class Logger
     {
-        public static void LogMessageToConsole(Message message)
+        public static void LogToConsole(string text)
         {
-           Console.WriteLine($"{message.Author}: {message.Text}; (likes: {message.Likes.Count})");
+            Console.WriteLine(text);
         }
 
-        public static string AskToLogMessageByUser()
+        public static string GetInput()
         {
-            Console.WriteLine("Type in user name: ");
             return Console.ReadLine();
         }
 
-        public static void LogNoSuchUser()
-        {
-            Console.WriteLine("There's no such user");
-        }
-
-        public static bool AskYesOrNo(string question)
+        public static bool GetConsent(string question)
         {
             Console.WriteLine($"{question} y/n");
 
@@ -37,40 +30,6 @@ namespace chat
 
             return true;
         }
-
-        public static string GetUserNameFromConsole()
-        {
-            Console.WriteLine("Your name:");
-            return Console.ReadLine();
-        }
-
-        public static string GetUserBirthdayFromConsole()
-        {
-            Console.WriteLine("Your birthday MM/DD/YYYY:");
-
-            return Console.ReadLine();
-        }
-
-        public static void AskLogDateCorrect()
-        {
-            Console.WriteLine("Type in this format MM/DD/YYYY:");
-        }
-
-        public static void LogContentIsExplicit()
-        {
-            Console.WriteLine("Explicit content");
-        }
-
-        public static string TakeAnyInput()
-        {
-            return Console.ReadLine();
-        }
-
-        public static void AllowToChat()
-        {
-            Console.WriteLine("You can chat");
-        }
-
     }
 }
 

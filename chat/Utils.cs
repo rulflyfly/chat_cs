@@ -1,4 +1,6 @@
 ﻿using System;
+using chat.domain;
+
 namespace chat
 {
     public class Utils
@@ -23,6 +25,17 @@ namespace chat
             TimeSpan span = end - start;
             
             return (zeroTime + span).Year - 1;
+        }
+
+        public static string MakeMessageString(Message message)
+        {
+            var userName = UserService.GetUserById(message.UserId).Name;
+            return $"{userName}: {message.Text}; (likes: {message.Likes.Count})";
+        }
+
+        public static string WrapStringInQuotes(string input)
+        {
+            return @"""" + input + @"""";
         }
     }
 }

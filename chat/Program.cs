@@ -7,113 +7,193 @@ namespace chat
     {
         static void Main(string[] args)
         {
-            var user = LogInUser();
+            Logger.LogToConsole("Enter your name:");
 
-            var mustBeCensored = Utils.GetYearsDifference(user.Birthday, DateTime.Now) < 18;
+            var userName = Logger.GetInput();
+            var user = UserService.GetUserByName(userName);
 
-            EditUserInfo(user);
+            bool bRunChat = false;
 
-            ShowAllChatMessages(mustBeCensored);
-
-            Logger.AllowToChat();
-
-            while (true)
+            if (user == null)
             {
-                var newMessage = Logger.TakeAnyInput();
-                ChatService.WriteMessage(user, newMessage);
-                ShowLoggedUserMessages(user.Name);
-            }
+                bool bSignUpNewUser = Logger.GetConsent($"There's no user named {userName}. Sing up?");
 
+                if (bSignUpNewUser)
+                {
+                    user = GetSingedUpUser();
+                    bRunChat = true;
+                }
+            }
+            else bRunChat = true;
+
+            if (bRunChat)
+            {
+                Logger.LogToConsole("You can chat. To access menu type *MENU");
+                RunChat(user);
+            }
+            else
+            {
+                Logger.LogToConsole("We're sorry but this chat is only for signed up users");
+            }
         }
 
-        static void ShowAllChatMessages(bool mustBeCensored)
+        static string GetOption()
         {
-            var messages = ChatService.GetAllMessages();
+            Logger.LogToConsole("To see all chat messages type *ALL");
+            Logger.LogToConsole("To see all chat messages by specific user type *SEARCH");
+            Logger.LogToConsole("To edit your personal info type *EDIT_INFO");
+            Logger.LogToConsole("To go back to chat type *BACK");
 
-            if (mustBeCensored) messages = ChatService.CensorMessages(messages);
+            var option = Logger.GetInput();
+
+            while (option != "*ALL" &&
+                   option != "*SEARCH" &&
+                   option != "*EDIT_INFO" &&
+                   option != "*BACK")
+            {
+                Logger.LogToConsole("type *ALL, *SEARCH or *EDIT_INFO");
+                option = Logger.GetInput();
+            }
+
+            return option;
+        }
+
+        static void ManageMenuOptions(User user)
+        {
+            var option = GetOption();
+
+            switch(option)
+            {
+                case "*ALL":
+                    ShowAllChatMessages(user);
+                    break;
+                case "*SEARCH":
+                    ShowChatMessagesByUserName(user);
+                    break;
+                case "*EDIT_INFO":
+                    EditUserInfo(user);
+                    break;
+                case "*BACK":
+                    return;
+            }
+        }
+
+        static User GetSingedUpUser()
+        {
+            Logger.LogToConsole("Your name:");
+            var name = Logger.GetInput();
+
+            Logger.LogToConsole("Your birthday MM/DD/YYYY:");
+            var bday = Logger.GetInput();
+
+            while (!Utils.IsValidDate(bday))
+            {
+                Logger.LogToConsole("Type in this format MM/DD/YYYY:");
+                bday = Logger.GetInput();
+            }
+
+            return UserService.SingUpUser(name, bday);
+        }
+
+        static void RunChat(User user)
+        {
+            while (true)
+            {
+                var newMessage = Logger.GetInput();
+                if (newMessage == "*MENU")
+                {
+                    ManageMenuOptions(user);
+                }
+                else
+                {
+                    ChatService.WriteMessage(user, newMessage);
+                    ShowLoggedUserMessages(user, user.Name);
+                }
+                
+            }
+        }
+
+        static void ShowAllChatMessages(User user)
+        {
+            var messages = ChatService.GetAllMessages(user);
 
             foreach (var message in messages)
             {
-                Logger.LogMessageToConsole(message);
+                var messageString = Utils.MakeMessageString(message);
+                Logger.LogToConsole(messageString);
             }
         }
 
-        static void ShowChatMessagesByUserName(bool mustBeCensored)
+        static void ShowChatMessagesByUserName(User user)
         {
             var askSearchUser = true;
 
             while (askSearchUser)
             {
-                var userName = Logger.AskToLogMessageByUser();
+                Logger.LogToConsole("Type in user name: ");
+                var userName = Logger.GetInput();
 
-                var userMessages = ChatService.GetUserMessages(userName);
-                if (mustBeCensored) userMessages = ChatService.CensorMessages(userMessages);
+                var userMessages = ChatService.GetUserMessages(user, userName);
 
                 if (userMessages.Count == 0)
                 {
-                    Logger.LogNoSuchUser();
+                    Logger.LogToConsole("There's no such user");
                 }
                 else
                 {
                     foreach (var userMessage in userMessages)
                     {
-                        Logger.LogMessageToConsole(userMessage);
+                        var messageString = Utils.MakeMessageString(userMessage);
+                        Logger.LogToConsole(messageString);
                     }
                 }
 
-                askSearchUser = Logger.AskYesOrNo("Filter by another user?");
+                askSearchUser = Logger.GetConsent("Filter by another user?");
             }
         }
 
-        static void ShowLoggedUserMessages(string name)
+        static void ShowLoggedUserMessages(User user, string name)
         {
-            var messages = ChatService.GetUserMessages(name);
+            var messages = ChatService.GetUserMessages(user, name);
             if (messages.Count == 0) return;
 
             foreach (var message in messages)
             {
-                Logger.LogMessageToConsole(message);
+                var messageString = Utils.MakeMessageString(message);
+                Logger.LogToConsole(messageString);
             }
-        }
-
-        static User LogInUser()
-        {
-            var name = Logger.GetUserNameFromConsole();
-            var bday = Logger.GetUserBirthdayFromConsole();
-
-            while (!Utils.IsValidDate(bday))
-            {
-                Logger.AskLogDateCorrect();
-                bday = Logger.TakeAnyInput();
-            }
-
-            return new User { Name = name, Birthday = DateTime.Parse(bday) };
         }
 
         static void EditUserInfo(User user)
         {
-            var editName = Logger.AskYesOrNo("Edit user name?");
+            var editName = Logger.GetConsent("Edit user name?");
 
             if (editName)
             {
-                user.Name = Logger.GetUserNameFromConsole();
+                Logger.LogToConsole("Your name:");
+                user.Name = Logger.GetInput();
             }
 
-            var editBirthday = Logger.AskYesOrNo("Edit user birthday?");
+            var editBirthday = Logger.GetConsent("Edit user birthday?");
 
 
             if (editBirthday)
             {
-                var bday = Logger.GetUserBirthdayFromConsole();
+                Logger.LogToConsole("Your birthday MM/DD/YYYY:");
+                var bday = Logger.GetInput();
 
                 while (!Utils.IsValidDate(bday))
                 {
-                    Logger.AskLogDateCorrect();
-                    bday = Logger.TakeAnyInput();
+                    Logger.LogToConsole("Type in this format MM/DD/YYYY:");
+                    bday = Logger.GetInput();
                 }
 
-                user.Birthday = DateTime.Parse(bday);
+                user.Birthday = bday;
             }
+
+            Logger.LogToConsole("Successfully edited! You can keep chatting");
+
+            UserService.UpdateUserInfo(user);
         }
     }
 }

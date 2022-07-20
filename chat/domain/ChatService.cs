@@ -1,22 +1,27 @@
 ﻿using System;
+using System.Text.Json;
 
 namespace chat.domain
 {
     public class ChatService
     {
-        public static List<Message> GetAllMessages()
+        public static List<Message> GetAllMessages(User authenticatedUser)
         {
-            return ChatRepository.ReadChatData().Messages;
+            var chat = ChatRepository.ReadChatData();
+
+            var messages = chat.GetMessagesVisibleToUser(authenticatedUser);
+
+            return messages;
         }
 
-        public static List<Message> GetUserMessages(string author)
+        public static List<Message> GetUserMessages(User authenticatedUser, string searchName)
         {
-            var allMessages = ChatRepository.ReadChatData().Messages;
+            var allMessages = GetAllMessages(authenticatedUser);
             var filtered = new List<Message>();
 
             foreach (var message in allMessages)
             {
-                if (message.Author == author)
+                if (UserService.GetUserById(message.UserId).Name == searchName)
                 {
                     filtered.Add(message);
                 }
@@ -28,24 +33,16 @@ namespace chat.domain
         public static void WriteMessage(User user, string text)
         {
             var likes = new List<Like>();
-            var newMessage = new Message(user.Name, text, likes, false);
-            ChatRepository.AddMessageToChatData(newMessage);
+            var newMessage = new Message(user.Id, text, likes, false);
+
+            var chatData = ChatRepository.ReadChatData();
+            chatData.Messages.Add(newMessage);
+
+            var newChatData = JsonSerializer.Serialize(chatData)!;
+
+            File.WriteAllText(ChatRepository.filePath, newChatData);
         }
 
-        public static List<Message> CensorMessages(List<Message> messages)
-        {
-            var filtered = new List<Message>();
-
-            foreach (var message in messages)
-            {
-                if (message.NSFW == false)
-                {
-                    filtered.Add(message);
-                }
-            }
-
-            return filtered;
-        }
     }
 }
 
