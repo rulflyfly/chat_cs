@@ -51,7 +51,7 @@ namespace chat
                    option != "*EDIT_INFO" &&
                    option != "*BACK")
             {
-                Logger.LogToConsole("type *ALL, *SEARCH or *EDIT_INFO");
+                Logger.LogToConsole("type *ALL, *SEARCH, *EDIT_INFO or *BACK");
                 option = Logger.GetInput();
             }
 
@@ -68,7 +68,7 @@ namespace chat
                     ShowAllChatMessages(user);
                     break;
                 case "*SEARCH":
-                    ShowChatMessagesByUserName(user);
+                    SearchByUserName(user);
                     break;
                 case "*EDIT_INFO":
                     EditUserInfo(user);
@@ -124,7 +124,7 @@ namespace chat
             }
         }
 
-        static void ShowChatMessagesByUserName(User user)
+        static void SearchByUserName(User user)
         {
             var askSearchUser = true;
 
@@ -175,7 +175,6 @@ namespace chat
             }
 
             var editBirthday = Logger.GetConsent("Edit user birthday?");
-
 
             if (editBirthday)
             {
