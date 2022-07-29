@@ -1,1 +1,54 @@
-{"Messages":[{"UserId":4031,"Text":"NSFW text","Likes":[],"NSFW":true},{"UserId":4031,"Text":"neutral text","Likes":[],"NSFW":false},{"UserId":4032,"Text":"privet","Likes":[],"NSFW":false},{"UserId":4032,"Text":"dobroye utro","Likes":[],"NSFW":false},{"UserId":4032,"Text":"dobriy vecher","Likes":[],"NSFW":false},{"UserId":4032,"Text":"testing chat","Likes":[],"NSFW":false},{"UserId":4032,"Text":"successfully tested :)","Likes":[],"NSFW":false}],"Users":[{"Id":4031,"Name":"Test User","Birthday":"01/08/1997"},{"Id":4032,"Name":"Nastya","Birthday":"08/01/2020"}]}
+{
+  "Messages": [
+    {
+      "UserId": 4031,
+      "Text": "NSFW text",
+      "Likes": [],
+      "NSFW": true
+    },
+    {
+      "UserId": 4031,
+      "Text": "neutral text",
+      "Likes": [],
+      "NSFW": false
+    },
+    {
+      "UserId": 4032,
+      "Text": "privet",
+      "Likes": [],
+      "NSFW": false
+    },
+    {
+      "UserId": 4032,
+      "Text": "dobroye utro",
+      "Likes": [],
+      "NSFW": false
+    },
+    {
+      "UserId": 4032,
+      "Text": "dobriy vecher",
+      "Likes": [],
+      "NSFW": false
+    },
+    {
+      "UserId": 4032,
+      "Text": "testing chat",
+      "Likes": [],
+      "NSFW": false
+    },
+    {
+      "UserId": 4032,
+      "Text": "successfully tested :)",
+      "Likes": [],
+      "NSFW": false
+    }
+  ],
+  "Users": [
+    {
+      "Id": 4031
+    },
+    {
+      "Id": 4032
+    }
+  ]
+}
