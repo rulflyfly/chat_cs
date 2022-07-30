@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using chat;
 
 namespace chat.domain
 {
@@ -7,7 +8,7 @@ namespace chat.domain
     {
         public static List<User> GetAllUsers()
         {
-            return ChatRepository.ReadChatData().Users;
+            return UserRepository
         }
 
         public static User GetUserById(double userId)

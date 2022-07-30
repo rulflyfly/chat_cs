@@ -7,6 +7,10 @@ namespace chat
     {
         static void Main(string[] args)
         {
+
+            // У тебя есть класс Chat Repository, в нем метод ReadChatData, но при этом
+            //ты его не вызываешь нигде
+            //По идее, тут нужно объявить объект класса ChatRepository, чтобы потом можно было поместить, например, Юзеров в переменную.
             Logger.LogToConsole("Enter your name:");
 
             var userName = Logger.GetInput();
