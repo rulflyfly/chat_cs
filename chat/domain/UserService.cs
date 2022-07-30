@@ -8,7 +8,11 @@ namespace chat.domain
     {
         public static List<User> GetAllUsers()
         {
-            return UserRepository
+            var userRepository = new UserRepository("data/AllUsers.json");
+
+            var allUsers = userRepository.GetAllUsers();
+
+            return allUsers;
         }
 
         public static User GetUserById(double userId)
