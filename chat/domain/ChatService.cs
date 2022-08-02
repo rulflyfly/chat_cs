@@ -43,6 +43,18 @@ namespace chat.domain
             File.WriteAllText(ChatRepository.filePath, newChatData);
         }
 
+        public List<string> ShowAllChat(Chat Chat)
+        {
+            var list = new List<string>();
+            var i = 0;
+            foreach (var message in Chat.Messages)
+            {
+                list.Add($"[{i}] - {Utils.MakeMessageString(message)}");
+                i = i + 1;
+            }
+            return list;
+        }
+
     }
 }
 
