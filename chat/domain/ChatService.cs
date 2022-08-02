@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using chat;
 
 namespace chat.domain
 {
@@ -43,17 +44,21 @@ namespace chat.domain
             File.WriteAllText(ChatRepository.filePath, newChatData);
         }
 
-        public List<string> ShowAllChat(Chat Chat)
+        public List<string> ShowAllChat()
         {
+            var chatData = ChatRepository.ReadChatData();
+
             var list = new List<string>();
-            var i = 0;
-            foreach (var message in Chat.Messages)
+            var i = 1;
+            foreach (var message in chatData.Messages)
             {
                 list.Add($"[{i}] - {Utils.MakeMessageString(message)}");
                 i = i + 1;
             }
             return list;
         }
+
+
 
     }
 }

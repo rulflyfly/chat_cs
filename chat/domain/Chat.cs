@@ -18,6 +18,8 @@ namespace chat.domain
 
             return visibleMessages;
         }
+
+
     }
 
 }
