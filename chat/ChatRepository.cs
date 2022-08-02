@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 using chat.domain;
 
 namespace chat
 {
     public class ChatRepository
     {
-        public static readonly string filePath = "/Users/Nastya/Documents/learning/С#/chat/chat/data/chat-data.json";
+        public static readonly string filePath = "/Users/Nastya/Documents/learning/cs/chat/chat/data/chat-data.json";
 
         // Так как у нас Юзеры теперь отдельно от чата, и это общий список залогиненных юзеров в программе,
         //то при загрузке чата нам нужно определить, какие конкретно Юзеры из общего списка залогинены в нашем чате:
