@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace chat
+﻿namespace chat
 {
     public class Logger
     {

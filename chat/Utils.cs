@@ -1,5 +1,4 @@
-﻿using System;
-using chat.domain;
+﻿using chat.domain;
 
 namespace chat
 {
