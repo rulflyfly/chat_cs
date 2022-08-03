@@ -1,5 +1,4 @@
-﻿using System;
-namespace chat.domain
+﻿namespace chat.domain
 {
     public record User (double Id)
     {
@@ -11,6 +10,6 @@ namespace chat.domain
             var isAdult = Utils.GetYearsDifference(DateTime.Parse(Birthday), DateTime.Now) >= 18;
             return isAdult;
         }
-    };
+    }
 }
 

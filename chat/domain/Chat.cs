@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace chat.domain
+﻿namespace chat.domain
 {
     public record Chat (List<Message> Messages)
     {
-        public List<User> Users { get; set; }
         public List<Message> GetMessagesVisibleToUser(User activeUser)
         {
             var visibleMessages = new List<Message>();
@@ -18,9 +15,6 @@ namespace chat.domain
 
             return visibleMessages;
         }
-
-
     }
-
 }
 

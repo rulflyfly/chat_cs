@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text.Json;
-using chat;
-
+﻿using System.Text.Json;
 namespace chat.domain
 {
     public class ChatService
@@ -44,22 +41,18 @@ namespace chat.domain
             File.WriteAllText(ChatRepository.filePath, newChatData);
         }
 
-        public List<string> ShowAllChat()
+        public static List<string> ShowNumberedChatMessages()
         {
             var chatData = ChatRepository.ReadChatData();
+            List<string> indices = new List<string>();
 
-            var list = new List<string>();
-            var i = 1;
-            foreach (var message in chatData.Messages)
+            for (var i = 0; i < chatData.Messages.Count; i++)
             {
-                list.Add($"[{i}] - {Utils.MakeMessageString(message)}");
-                i = i + 1;
+                Logger.LogToConsole($"[{i + 1}] - {Utils.MakeMessageString(chatData.Messages[i])}");
+                indices.Add($"{i + 1}");
             }
-            return list;
+            return indices;
         }
-
-
-
     }
 }
 

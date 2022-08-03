@@ -1,5 +1,4 @@
-﻿using System;
-using chat.domain;
+﻿using chat.domain;
 
 namespace chat
 {
@@ -36,21 +35,6 @@ namespace chat
         public static string WrapStringInQuotes(string input)
         {
             return @"""" + input + @"""";
-        }
-
-        public static int GetMessageNumber(Chat chat)
-        {
-            var chatService = new ChatService();
-            chatService.ShowAllChat();
-            Logger.LogToConsole("Type in the number of the message you like: ");
-            return (Convert.ToInt32(Logger.GetInput()) - 1);
-        }
-        public static void CreateLike(int number, Chat chat, User user)
-        {
-            var messages = chat.Messages;
-            var newLike = new Like(user.Name);
-            messages[number].Likes.Add(newLike);
-
         }
     }
 }
