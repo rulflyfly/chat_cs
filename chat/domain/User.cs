@@ -1,5 +1,4 @@
-﻿using System;
-namespace chat.domain
+﻿namespace chat.domain
 {
     public record User (double Id)
     {

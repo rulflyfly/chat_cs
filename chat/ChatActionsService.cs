@@ -99,7 +99,7 @@ namespace chat
                 else
                 {
                     ChatService.WriteMessage(user, newMessage);
-                    ChatActionsService.ShowLoggedUserMessages(user, user.Name);
+                    ShowLoggedUserMessages(user, user.Name);
                 }
 
             }

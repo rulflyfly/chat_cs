@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace chat.domain
+﻿namespace chat.domain
 {
     public record Chat (List<Message> Messages)
     {
@@ -18,6 +16,5 @@ namespace chat.domain
             return visibleMessages;
         }
     }
-
 }
 

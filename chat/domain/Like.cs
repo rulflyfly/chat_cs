@@ -1,7 +1,5 @@
-﻿using System;
-
-namespace chat.domain
+﻿namespace chat.domain
 {
-    public record Like (string Author);
+    public record Like (string UserId);
 }
 
