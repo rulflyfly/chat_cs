@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+
             Logger.LogToConsole("Enter your name:");
 
             var userName = Logger.GetInput();
