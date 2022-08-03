@@ -8,9 +8,7 @@ namespace chat.domain
     {
         public static List<User> GetAllUsers()
         {
-            var userRepository = new UserRepository("data/AllUsers.json");
-
-            var allUsers = userRepository.GetAllUsers();
+            var allUsers = UserRepository.ReadUserData();
 
             return allUsers;
         }
@@ -46,12 +44,12 @@ namespace chat.domain
 
             var user = new User(id) { Name = name, Birthday = bday};
 
-            var chatData = ChatRepository.ReadChatData();
-            chatData.Users.Add(user);
+            var userData = UserRepository.ReadUserData();
+            userData.Add(user);
 
-            var newChatData = JsonSerializer.Serialize(chatData)!;
+            var newUserData = JsonSerializer.Serialize(userData)!;
 
-            File.WriteAllText(ChatRepository.filePath, newChatData);
+            File.WriteAllText(UserRepository.filePath, newUserData);
 
             return user;
         }
@@ -64,12 +62,9 @@ namespace chat.domain
 
             users[index] = updatedUser;
 
-            var chatData = ChatRepository.ReadChatData();
-            chatData.Users = users;
+            var newUserData = JsonSerializer.Serialize(users)!;
 
-            var newChatData = JsonSerializer.Serialize(chatData)!;
-
-            File.WriteAllText(ChatRepository.filePath, newChatData);
+            File.WriteAllText(UserRepository.filePath, newUserData);
 
         }
     }

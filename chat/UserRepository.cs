@@ -6,16 +6,10 @@ namespace chat
 {
     public class UserRepository
     {
-        private string _filePath;
-
-        public UserRepository(string filePath)
+        public static readonly string filePath = "/Users/Nastya/Documents/learning/cs/chat/chat/data/users-data.json";
+        public static List<User> ReadUserData()
         {
-            this._filePath = filePath;
-        }
-
-        public List<User> GetAllUsers()
-        {
-            var jsonText = File.ReadAllText(_filePath);
+            var jsonText = File.ReadAllText(filePath);
             var allUsers = JsonSerializer.Deserialize<List<User>>(jsonText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, WriteIndented = true });
             return allUsers;
         }
