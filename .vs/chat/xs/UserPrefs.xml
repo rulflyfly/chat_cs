@@ -1,28 +1,30 @@
 ﻿<Properties StartupConfiguration="{E34D256C-135B-4BEC-883B-9EADC6BD28CD}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="chat/domain/UserService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="chat/domain/LikeService.cs">
     <Files>
-      <File FileName="chat/Logger.cs" Line="1" Column="1" />
-      <File FileName="chat/domain/ChatService.cs" Line="29" Column="1" />
-      <File FileName="chat/domain/Chat.cs" Line="6" Column="6" />
-      <File FileName="chat/domain/Like.cs" Line="2" Column="1" />
-      <File FileName="chat/domain/Message.cs" Line="5" Column="34" />
-      <File FileName="chat/Program.cs" Line="22" Column="1" />
-      <File FileName="chat/domain/User.cs" Line="6" Column="23" />
-      <File FileName="chat/data/chat-data.json" Line="4" Column="17" />
-      <File FileName="chat/Utils.cs" Line="31" Column="72" />
-      <File FileName="chat/ChatRepository.cs" Line="36" Column="43" />
-      <File FileName="chat/domain/UserService.cs" Line="51" Column="36" />
-      <File FileName="chat/AuthService.cs" Line="1" Column="1" />
-      <File FileName="chat/ChatActionsService.cs" Line="1" Column="1" />
-      <File FileName="chat/UserRepository.cs" Line="14" Column="29" />
-      <File FileName="chat/data/all-users.json" Line="1" Column="160" />
+      <File FileName="chat/domain/ChatService.cs" Line="1" Column="1" />
+      <File FileName="chat/Utils.cs" Line="20" Column="9" />
+      <File FileName="chat/ChatRepository.cs" Line="16" Column="6" />
+      <File FileName="chat/Program.cs" Line="23" Column="1" />
+      <File FileName="chat/data/chat-data.json" Line="1" Column="16" />
+      <File FileName="chat/data/users-data.json" Line="1" Column="26" />
+      <File FileName="chat/domain/Chat.cs" Line="19" Column="2" />
+      <File FileName="chat/domain/Like.cs" Line="3" Column="40" />
+      <File FileName="chat/domain/Message.cs" Line="1" Column="1" />
+      <File FileName="chat/domain/User.cs" Line="5" Column="9" />
+      <File FileName="chat/domain/UserService.cs" Line="1" Column="14" />
+      <File FileName="chat/UserRepository.cs" Line="4" Column="15" />
+      <File FileName="chat/AuthService.cs" Line="28" Column="33" />
+      <File FileName="chat/ChatActionsService.cs" Line="27" Column="56" />
+      <File FileName="chat/Logger.cs" Line="5" Column="40" />
+      <File FileName="chat/MenuService.cs" Line="23" Column="32" />
+      <File FileName="chat/LikeService.cs" Line="15" Column="67" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -30,9 +32,7 @@
           <Node name="chat" expanded="True">
             <Node name="chat" expanded="True">
               <Node name="data" expanded="True" />
-              <Node name="domain" expanded="True">
-                <Node name="UserService.cs" selected="True" />
-              </Node>
+              <Node name="domain" expanded="True" />
             </Node>
           </Node>
         </State>
