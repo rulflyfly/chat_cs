@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chat.tests", "chat.tests\chat.tests.csproj", "{48FCA8B7-D009-4D3B-8860-BAAA608EC819}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{E34D256C-135B-4BEC-883B-9EADC6BD28CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34D256C-135B-4BEC-883B-9EADC6BD28CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34D256C-135B-4BEC-883B-9EADC6BD28CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48FCA8B7-D009-4D3B-8860-BAAA608EC819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48FCA8B7-D009-4D3B-8860-BAAA608EC819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48FCA8B7-D009-4D3B-8860-BAAA608EC819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48FCA8B7-D009-4D3B-8860-BAAA608EC819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

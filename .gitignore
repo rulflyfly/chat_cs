@@ -1,2 +1,4 @@
 /chat/bin
 /chat/obj
+/chat.tests/bin
+/chat.tests/obj
