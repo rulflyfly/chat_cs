@@ -5,7 +5,7 @@ namespace chat
 {
     public class UserRepository
     {
-        public static readonly string filePath = "/Users/Nastya/Documents/learning/cs/chat/chat/data/users-data.json";
+        public static readonly string filePath = "data/users-data.json";
         public static List<User> ReadUserData()
         {
             var jsonText = File.ReadAllText(filePath);
