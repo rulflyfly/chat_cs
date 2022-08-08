@@ -11,7 +11,7 @@ namespace chat.tests
     {
         // GetAllUsers
         [Test]
-        public void GetsAllUsersFromOriginalDataBase_expected_5()
+        public void GetsAllUsersFromOriginalDataBase_Returns5()
         {
             var expected = 5;
             
@@ -45,9 +45,8 @@ namespace chat.tests
             CollectionAssert.Contains(users, actual);
         }
 
-        // GetUserByName
         [Test]
-        public void CheckUsersInput_ListOfUsersContainPropertyWithSameName()
+        public void GetUserByNameWhenUserIsRegistered_ReturnsUserWithSpecifiedName()
         {
             var userInput = "Test_2";
 
@@ -57,7 +56,7 @@ namespace chat.tests
         }
 
         [Test]
-        public void CheckUsersInputIsNULL_ListOfUsersContainPropertyWithSameName()
+        public void GetUserByNameWhenUserIsNotRegistered_ReturnsNull()
         {
             var actual = "";
 
@@ -69,7 +68,7 @@ namespace chat.tests
 
         // SingUpUser
         [Test]
-        public void NewUsersInputsNameAndBirth_users_dataContainsNewUserWithGivenParameters()
+        public void NewUsersInputsNameAndBirth_DataContainsNewUserWithGivenParameters()
         {
             var name = "TestUser124";
             var bday = "02/02/2004";
@@ -79,8 +78,8 @@ namespace chat.tests
 
             var actual = UserService.SingUpUser(name, bday);
 
-            Assert.AreEqual(actual.Name, name);
-            Assert.AreEqual(actual.Birthday, bday);
+            Assert.AreEqual(actual.Name, expectedUserName);
+            Assert.AreEqual(actual.Birthday, expectedUserBirthday);
             CollectionAssert.Contains(arr, actual.Id);
 
         }
