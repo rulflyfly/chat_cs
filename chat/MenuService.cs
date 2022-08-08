@@ -20,7 +20,10 @@ namespace chat
                     ChatActionsService.EditUserInfo(user);
                     break;
                 case "*ADD_LIKE":
-                    LikeService.AddLikeToMessage(user);
+                    var chat = ChatRepository.ReadChatData();
+                    var numberedChatMessages = LikeService.ShowNumberedChatMessages(chat);
+                    var indexOfMessage = LikeService.GetMessageNumber(numberedChatMessages);
+                    LikeService.AddLikeToMessage(user, indexOfMessage, chat);
                     break;
                 case "*BACK":
                     return;
