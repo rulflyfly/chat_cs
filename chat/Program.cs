@@ -1,9 +1,19 @@
-﻿namespace chat 
+﻿using chat.domain;
+
+namespace chat 
 {
     internal class Program
     {
+        // solid
+        // single responsibility
+        // open closed
+        // liskov substitution
+        // interface segregation
+        // dependency inversion
+
         static void Main(string[] args)
         {
+            var chatActionsService = Compose();
 
             Logger.LogToConsole("Enter your name:");
 
@@ -17,8 +27,17 @@
             else
             {
                 Logger.LogToConsole("You can chat. To access menu type *MENU");
-                ChatActionsService.RunChat(user);
+                chatActionsService.RunChat(user);
             }
         }
+
+        private static ChatActionsService Compose()
+        {
+            var chatRepository = new PostgresChatRepository();
+            var chatService = new ChatService(chatRepository);
+            var chatActionsService = new ChatActionsService(chatService);
+            return chatActionsService;
+        }
+        // composition root
     }
 }

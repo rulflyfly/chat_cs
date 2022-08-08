@@ -1,18 +1,25 @@
 ﻿using System.Text.Json;
 namespace chat.domain
 {
-    public class ChatService
+    public class ChatService : IChatService
     {
-        public static List<Message> GetAllMessages(User authenticatedUser)
+        private IChatRepository _chatRepository;
+
+        public ChatService(IChatRepository chatRepository)
         {
-            var chat = ChatRepository.ReadChatData();
+            _chatRepository = chatRepository;
+        }
+
+        public List<Message> GetAllMessages(User authenticatedUser)
+        {
+            var chat = _chatRepository.ReadChatData();
 
             var messages = chat.GetMessagesVisibleToUser(authenticatedUser);
 
             return messages;
         }
 
-        public static List<Message> GetUserMessages(User authenticatedUser, string searchName)
+        public List<Message> GetUserMessages(User authenticatedUser, string searchName)
         {
             var allMessages = GetAllMessages(authenticatedUser);
             var filtered = new List<Message>();
@@ -28,12 +35,12 @@ namespace chat.domain
             return filtered;
         }
 
-        public static void WriteMessage(User user, string text)
+        public void WriteMessage(User user, string text)
         {
             var likes = new List<Like>();
             var newMessage = new Message(user.Id, text, likes, false);
 
-            var chatData = ChatRepository.ReadChatData();
+            var chatData = _chatRepository.ReadChatData();
             chatData.Messages.Add(newMessage);
 
             var newChatData = JsonSerializer.Serialize(chatData)!;
@@ -41,9 +48,9 @@ namespace chat.domain
             File.WriteAllText(ChatRepository.filePath, newChatData);
         }
 
-        public static List<string> ShowNumberedChatMessages()
+        public List<string> ShowNumberedChatMessages()
         {
-            var chatData = ChatRepository.ReadChatData();
+            var chatData = _chatRepository.ReadChatData();
             List<string> indices = new List<string>();
 
             for (var i = 0; i < chatData.Messages.Count; i++)

@@ -4,9 +4,16 @@ namespace chat
 {
     public class ChatActionsService
     {
-        public static void ShowAllChatMessages(User user)
+        private readonly IChatService _chatService;
+
+        public ChatActionsService(IChatService chatService)
         {
-            var messages = ChatService.GetAllMessages(user);
+            _chatService = chatService;
+        }
+
+        public void ShowAllChatMessages(User user)
+        {
+            var messages = _chatService.GetAllMessages(user);
 
             foreach (var message in messages)
             {
@@ -15,7 +22,7 @@ namespace chat
             }
         }
 
-        public static void SearchByUserName(User user)
+        public void SearchByUserName(User user)
         {
             var askSearchUser = true;
 
@@ -24,7 +31,7 @@ namespace chat
                 Logger.LogToConsole("Type in user name: ");
                 var userName = Logger.GetInput();
 
-                var userMessages = ChatService.GetUserMessages(user, userName);
+                var userMessages = _chatService.GetUserMessages(user, userName);
 
                 if (userMessages.Count == 0)
                 {
@@ -43,9 +50,9 @@ namespace chat
             }
         }
 
-        public static void ShowLoggedUserMessages(User user, string name)
+        public void ShowLoggedUserMessages(User user, string name)
         {
-            var messages = ChatService.GetUserMessages(user, name);
+            var messages = _chatService.GetUserMessages(user, name);
             if (messages.Count == 0) return;
 
             foreach (var message in messages)
@@ -56,7 +63,7 @@ namespace chat
         }
 
 
-        public static void EditUserInfo(User user)
+        public void EditUserInfo(User user)
         {
             var editName = Logger.GetConsent("Edit user name?");
 
@@ -87,7 +94,7 @@ namespace chat
             UserService.UpdateUserInfo(user);
         }
 
-        public static void RunChat(User user)
+        public void RunChat(User user)
         {
             while (true)
             {
@@ -98,7 +105,7 @@ namespace chat
                 }
                 else
                 {
-                    ChatService.WriteMessage(user, newMessage);
+                    _chatService.WriteMessage(user, newMessage);
                     ShowLoggedUserMessages(user, user.Name);
                 }
 

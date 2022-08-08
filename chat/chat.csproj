@@ -10,10 +10,12 @@
   <ItemGroup>
     <None Remove="data\" />
     <None Remove="domain\" />
+    <None Remove="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
     <Folder Include="domain\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />

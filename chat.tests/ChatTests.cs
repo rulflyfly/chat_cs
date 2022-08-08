@@ -28,7 +28,7 @@ public class ChatTests
     [Test]
     public void GetMessagesVisibleToAdultUser_ReturnsAllChatMessages()
     {
-        var user = new User(1) { Name = "Nastya", Birthday = "08/01/1997" };
+        var user = new FakeUser { IsAdultFlag = true };
 
         List<Like> likes = new();
         var nutralMessage = new chat.domain.Message(1.0, "prtivet", likes, false);
@@ -47,7 +47,37 @@ public class ChatTests
         CollectionAssert.Contains(filteredMessages, nutralMessage);
         CollectionAssert.Contains(filteredMessages, adultMessage);
     }
+
+    [Test]
+    public void GetMessagesWhenChatIsEmpty_ReturnsEmptyArray()
+    {
+        var fakeRepository = new FakeRepository();
+        var chatService = new ChatService(fakeRepository);
+        var chat = new Chat(new List<Message>());
+        fakeRepository.TestChat = chat;
+        var user = new User(1) { Name = "Nastya", Birthday = "08/01/1997" };
+
+        var allMessages = chatService.GetAllMessages(user);
+
+        CollectionAssert.IsEmpty(allMessages);
+    }
+
+    public class FakeUser : IUser
+    {
+        public bool IsAdultFlag { get; set; }
+        public bool IsAdult()
+        {
+            return IsAdultFlag;
+        }
+    }
+    // fake, stub
+    public class FakeRepository : IChatRepository
+    {
+        public Chat TestChat { get; set; }
+
+        public Chat ReadChatData()
+        {
+            return TestChat;
+        }
+    }
 }
-
-
-public record Message(double UserId, string Text, List<Like> Likes, bool NSFW);
