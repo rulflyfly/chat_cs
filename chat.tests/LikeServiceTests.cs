@@ -1,4 +1,8 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestPlatform;
+using System.Collections.Generic;
+
+
 namespace chat.tests
 {
     public class LikeServiceTests
@@ -7,9 +11,17 @@ namespace chat.tests
         // GetMessageNumber
 
         [Test]
-        public void GetUsersInput_IsIntNumber()
+        public void UserInputsIndexOfMessageToAddLike_ListOfMessagesWithIndicesContainsUsersInputIndex()
         {
+            //var list = new List<string> { "1", "234", "7", "8", "10" };
+            //var userInput = "7";
 
+            //var actual = LikeService.GetMessageNumber(list);
+        }
+
+        [Test]
+        public void FunctionGetsChatAsParameter_ReturnListOfStrings()
+        {
         }
     }
 }

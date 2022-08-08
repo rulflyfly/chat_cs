@@ -19,4 +19,16 @@
   <ItemGroup>
     <ProjectReference Include="..\chat\chat.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="data.Tests\" />
+    <None Remove="data.Tests\EmptyJSONFile.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data.Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data.Tests\users-tests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

@@ -1,30 +1,15 @@
 ﻿<Properties StartupConfiguration="{E34D256C-135B-4BEC-883B-9EADC6BD28CD}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="chat/domain/LikeService.cs">
+  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="chat/UserRepository.cs">
     <Files>
-      <File FileName="chat/domain/ChatService.cs" Line="1" Column="1" />
-      <File FileName="chat/Utils.cs" Line="20" Column="9" />
-      <File FileName="chat/ChatRepository.cs" Line="16" Column="6" />
-      <File FileName="chat/Program.cs" Line="23" Column="1" />
-      <File FileName="chat/data/chat-data.json" Line="1" Column="16" />
-      <File FileName="chat/data/users-data.json" Line="1" Column="26" />
-      <File FileName="chat/domain/Chat.cs" Line="19" Column="2" />
-      <File FileName="chat/domain/Like.cs" Line="3" Column="40" />
-      <File FileName="chat/domain/Message.cs" Line="1" Column="1" />
-      <File FileName="chat/domain/User.cs" Line="5" Column="9" />
-      <File FileName="chat/domain/UserService.cs" Line="1" Column="14" />
-      <File FileName="chat/UserRepository.cs" Line="4" Column="15" />
-      <File FileName="chat/AuthService.cs" Line="28" Column="33" />
-      <File FileName="chat/ChatActionsService.cs" Line="27" Column="56" />
-      <File FileName="chat/Logger.cs" Line="5" Column="40" />
-      <File FileName="chat/MenuService.cs" Line="23" Column="32" />
-      <File FileName="chat/LikeService.cs" Line="15" Column="67" />
+      <File FileName="chat/MenuService.cs" Line="28" Column="30" />
+      <File FileName="chat/UserRepository.cs" Line="7" Column="6" />
+      <File FileName="chat.tests/UserServiceTests.cs" Line="5" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -33,6 +18,13 @@
             <Node name="chat" expanded="True">
               <Node name="data" expanded="True" />
               <Node name="domain" expanded="True" />
+              <Node name="UserRepository.cs" selected="True" />
+            </Node>
+            <Node name="chat.tests" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="ProjectDependencies" expanded="True" />
+              </Node>
+              <Node name="data.Tests" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -40,6 +32,19 @@
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State />
       </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="chat" expanded="True">
+            <Node name="chat.tests" expanded="True">
+              <Node name="chat.tests" expanded="True">
+                <Node name="LikeServiceTests" expanded="True" />
+                <Node name="UserServiceTests" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
 </Properties>

@@ -40,7 +40,6 @@ namespace chat
             }
             return indices;
         }
-        //test
     }
 }
 
