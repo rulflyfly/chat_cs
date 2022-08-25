@@ -4,9 +4,10 @@ namespace chat
 {
     public class ChatActionsService
     {
-        public static void ShowAllChatMessages(User user)
+        public static void ShowAllChatMessages(double userId, Chat chat)
         {
-            var messages = ChatService.GetAllMessages(user, chat);
+            var chatService = new ChatService();
+            var messages = chatService.GetAllMessages(userId, chat);
 
             foreach (var message in messages)
             {
@@ -15,7 +16,7 @@ namespace chat
             }
         }
 
-        public static void SearchByUserName(User user)
+        public static void SearchByUserName(double userId, Chat chat)
         {
             var askSearchUser = true;
 
@@ -24,7 +25,9 @@ namespace chat
                 Logger.LogToConsole("Type in user name: ");
                 var userName = Logger.GetInput();
 
-                var userMessages = ChatService.GetUserMessages(user, userName, chat);
+                var chatService = new ChatService();
+
+                var userMessages = chatService.GetUserMessages(userId, userName, chat);
 
                 if (userMessages.Count == 0)
                 {
@@ -43,9 +46,11 @@ namespace chat
             }
         }
 
-        public static void ShowLoggedUserMessages(User user, string name)
+        public static void ShowLoggedUserMessages(double userId, Chat chat)
         {
-            var messages = ChatService.GetUserMessages(user, name, chat);
+            var chatService = new ChatService();
+            var user = UserService.GetUserById(userId);
+            var messages = chatService.GetUserMessages(userId, user.Name, chat);
             if (messages.Count == 0) return;
 
             foreach (var message in messages)
@@ -56,8 +61,9 @@ namespace chat
         }
 
 
-        public static void EditUserInfo(User user)
+        public static void EditUserInfo(double userId)
         {
+            var user = UserService.GetUserById(userId);
             var editName = Logger.GetConsent("Edit user name?");
 
             if (editName)
@@ -87,27 +93,60 @@ namespace chat
             UserService.UpdateUserInfo(user);
         }
 
-        public static void RunChat(User user, Chat chat)
+        public static void RunChat(double userId, Chat chat)
         {
             while (true)
             {
                 var newMessage = Logger.GetInput();
                 if (newMessage == "*MENU")
                 {
-                    MenuService.ManageMenuOptions(user);
+                    MenuService.ManageMenuOptions(userId, chat);
                 }
                 if (newMessage == "*EXIT")
                 {
-                    //ChatRepository.WriteChatData(chat);
-                    //QuitChat();
+                    break;
                 }
                 else
                 {
-                    ChatService.WriteMessage(user, newMessage, chat);
-                    ShowLoggedUserMessages(user, user.Name);
+                    ChatService.WriteMessage(userId, newMessage, chat);
+                    ShowLoggedUserMessages(userId, chat);
                 }
 
             }
+        }
+
+        public static string PickChat()
+        {
+            var chatRepository = new ChatRepository("data/chat-data.json");
+            var chats = chatRepository.ReadChatData();
+
+            List<string> chatNames = new List<string>();
+
+            foreach (var chat in chats)
+            {
+                chatNames.Add(chat.Name);
+            }
+
+            Logger.LogToConsole("Pick a chat:");
+
+            foreach (var chatName in chatNames)
+            {
+                Logger.LogToConsole(chatName);
+            }
+
+            var pickedChatName = Logger.GetInput();
+
+            while (!chatNames.Contains(pickedChatName))
+            {
+                Logger.LogToConsole("Choose from existing names: ");
+                foreach (var chatName in chatNames)
+                {
+                    Logger.LogToConsole(chatName);
+                }
+                pickedChatName = Logger.GetInput();
+            }
+
+            return pickedChatName;
         }
     }
 }

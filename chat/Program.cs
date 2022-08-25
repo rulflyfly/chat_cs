@@ -22,15 +22,16 @@ namespace chat
             }
             else
             {
-               
-                var userInput = menuService.GetChatNameFromUser();
-                var chat = menuService.GetChatByName(userInput);
-
-                Logger.LogToConsole("You can chat. To access menu type *MENU");
-                ChatActionsService.RunChat(user, chat);
+                while (true)
+                {
+                    var chatName = ChatActionsService.PickChat();
+                    var chat = ChatService.GetCurrentChat(chatName);
+                    Logger.LogToConsole("You can chat. To access menu type *MENU, to exit chat type *EXIT");
+                    ChatActionsService.RunChat(user.Id, chat);
+                }
+                
             }
 
-            
         }
     }
 }

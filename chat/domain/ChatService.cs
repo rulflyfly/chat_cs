@@ -5,16 +5,17 @@ namespace chat.domain
     {
         
 
-        public List<Message> GetAllMessages(User authenticatedUser, Chat chat)
+        public List<Message> GetAllMessages(double userId, Chat chat)
         {
-            var messages = chat.GetMessagesVisibleToUser(authenticatedUser);
+            var user = UserService.GetUserById(userId);
+            var messages = chat.GetMessagesVisibleToUser(user);
 
             return messages;
         }
 
-        public List<Message> GetUserMessages(User authenticatedUser, string searchName, Chat chat)
+        public List<Message> GetUserMessages(double userId, string searchName, Chat chat)
         {
-            var allMessages = GetAllMessages(authenticatedUser, chat);
+            var allMessages = GetAllMessages(userId, chat);
             var filtered = new List<Message>();
 
             foreach (var message in allMessages)
@@ -28,17 +29,20 @@ namespace chat.domain
             return filtered;
         }
 
-        public static void WriteMessage(User user, string text, Chat chat)
+        public static void WriteMessage(double userId, string text, Chat chat)
         {
             var likes = new List<Like>();
-            var newMessage = new Message(user.Id, text, likes, false);
+            var newMessage = new Message(userId, text, likes, false);
 
-           
-            chat.Messages.Add(newMessage);
+            var updatedChat = chat;
 
-            var newChatData = JsonSerializer.Serialize(chat)!;
+            updatedChat.Messages.Add(newMessage);
 
-            File.WriteAllText(ChatRepository._filePath, newChatData);
+            var newChatData = JsonSerializer.Serialize(GetUpdatedChatsData(updatedChat))!;
+
+            var chatRepository = new ChatRepository("data/chat-data.json");
+
+            File.WriteAllText(chatRepository._filePath, newChatData);
         }
 
         public List<string> ShowNumberedChatMessages(Chat chat)
@@ -52,6 +56,37 @@ namespace chat.domain
                 indices.Add($"{i + 1}");
             }
             return indices;
+        }
+
+        public static Chat GetCurrentChat(string chatName)
+        {
+            var chatRepository = new ChatRepository("data/chat-data.json");
+            var chats = chatRepository.ReadChatData();
+
+
+            foreach (var chat in chats)
+            {
+                if (chat.Name == chatName) return chat;
+            }
+
+            return null;
+        }
+
+        public static List<Chat> GetUpdatedChatsData(Chat updatedChat)
+        {
+            var chatRepository = new ChatRepository("data/chat-data.json");
+            var chats = chatRepository.ReadChatData();
+
+            foreach (var chat in chats)
+            {
+                if (chat.Name == updatedChat.Name)
+                {
+                    chats[chats.IndexOf(chat)] = updatedChat;
+                    break;
+                }
+            }
+
+            return chats;
         }
     }
 }

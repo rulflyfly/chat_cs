@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="data\" />
     <None Remove="domain\" />
+    <None Remove="data\chat-data.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
@@ -17,5 +18,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\chat-data.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

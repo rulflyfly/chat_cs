@@ -12,14 +12,14 @@ namespace chat
             this._filePath = filePath;
         }
 
-        public Chat ReadChatData()
+        public List<Chat> ReadChatData()
         {
             var jsonString = File.ReadAllText(_filePath);
-            var chatData = JsonSerializer.Deserialize<Chat>(jsonString)!;
+            var chatData = JsonSerializer.Deserialize<List<Chat>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, WriteIndented = true });
             return chatData;
         }
 
-        public void WriteChatData(Chat newChatData)
+        public void WriteChatData(List<Chat> newChatData)
         {
             var newData = JsonSerializer.Serialize(newChatData)!;
 
@@ -28,3 +28,10 @@ namespace chat
     }
 }
 
+
+//public static List<User> ReadUserData()
+//{
+//    var jsonText = File.ReadAllText(filePath);
+//    var allUsers = JsonSerializer.Deserialize<List<User>>(jsonText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, WriteIndented = true });
+//    return allUsers;
+//}
