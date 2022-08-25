@@ -5,13 +5,25 @@ namespace chat
 {
     public class ChatRepository
     {
-        public static readonly string filePath = "/Users/Nastya/Documents/learning/cs/chat/chat/data/chat-data.json";
+        public string _filePath;
 
-        public static Chat ReadChatData()
+        public ChatRepository(string filePath)
         {
-            var jsonString = File.ReadAllText(filePath);
+            this._filePath = filePath;
+        }
+
+        public Chat ReadChatData()
+        {
+            var jsonString = File.ReadAllText(_filePath);
             var chatData = JsonSerializer.Deserialize<Chat>(jsonString)!;
             return chatData;
+        }
+
+        public void WriteChatData(Chat newChatData)
+        {
+            var newData = JsonSerializer.Serialize(newChatData)!;
+
+            File.WriteAllText(_filePath, newData);
         }
     }
 }

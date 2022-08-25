@@ -4,6 +4,37 @@ namespace chat
 {
     public class MenuService
     {
+        public Chat GetChatByName(string chatNameUserInput)
+        {
+            
+            switch (chatNameUserInput)
+            {
+                case "*MAIN_CHAT":
+                    var mainChatData = new ChatRepository("data/chat-data.json");
+                    return mainChatData.ReadChatData();
+                case "*WORK_CHAT":
+                    var workChatData = new ChatRepository("");
+                    return workChatData.ReadChatData();
+            }
+            return null;
+        }
+
+        public string GetChatNameFromUser()
+        {
+            Logger.LogToConsole("*MAIN_CHAT");
+            Logger.LogToConsole("*WORK_CHAT");
+
+            var option = Logger.GetInput();
+
+            while (option != "*MAIN_CHAT" &&
+                   option != "*WORK_CHAT")
+            {
+                Logger.LogToConsole("Type *MAIN_CHAT or *WORK_CHAT");
+                option = Logger.GetInput();
+            }
+            return option;
+        }
+        // еуые
         public static void ManageMenuOptions(User user)
         {
             var option = GetOption();
@@ -20,7 +51,7 @@ namespace chat
                     ChatActionsService.EditUserInfo(user);
                     break;
                 case "*ADD_LIKE":
-                    LikeService.AddLikeToMessage(user);
+                    LikeService.AddLikeToMessage(user, chat);
                     break;
                 case "*BACK":
                     return;

@@ -6,7 +6,7 @@ namespace chat
     {
         public static void ShowAllChatMessages(User user)
         {
-            var messages = ChatService.GetAllMessages(user);
+            var messages = ChatService.GetAllMessages(user, chat);
 
             foreach (var message in messages)
             {
@@ -24,7 +24,7 @@ namespace chat
                 Logger.LogToConsole("Type in user name: ");
                 var userName = Logger.GetInput();
 
-                var userMessages = ChatService.GetUserMessages(user, userName);
+                var userMessages = ChatService.GetUserMessages(user, userName, chat);
 
                 if (userMessages.Count == 0)
                 {
@@ -45,7 +45,7 @@ namespace chat
 
         public static void ShowLoggedUserMessages(User user, string name)
         {
-            var messages = ChatService.GetUserMessages(user, name);
+            var messages = ChatService.GetUserMessages(user, name, chat);
             if (messages.Count == 0) return;
 
             foreach (var message in messages)
@@ -87,7 +87,7 @@ namespace chat
             UserService.UpdateUserInfo(user);
         }
 
-        public static void RunChat(User user)
+        public static void RunChat(User user, Chat chat)
         {
             while (true)
             {
@@ -96,9 +96,14 @@ namespace chat
                 {
                     MenuService.ManageMenuOptions(user);
                 }
+                if (newMessage == "*EXIT")
+                {
+                    //ChatRepository.WriteChatData(chat);
+                    //QuitChat();
+                }
                 else
                 {
-                    ChatService.WriteMessage(user, newMessage);
+                    ChatService.WriteMessage(user, newMessage, chat);
                     ShowLoggedUserMessages(user, user.Name);
                 }
 
