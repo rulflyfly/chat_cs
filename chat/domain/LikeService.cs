@@ -1,27 +1,32 @@
 ﻿using System.Text.Json;
 using chat.domain;
+using chat;
+
 namespace chat
 {
     public class LikeService
     {
-        public static void AddLikeToMessage(User user)
+        public void AddLikeToMessage(double userId, Chat chat)
         {
-            var chatData = ChatRepository.ReadChatData();
-            var messageNumber = GetMessageNumber();
+            var messageNumber = GetMessageNumber(chat);
 
-            var newLike = new Like(Convert.ToString(user.Id));
+            var newLike = new Like(Convert.ToString(userId));
 
-            chatData.Messages[messageNumber].Likes.Add(newLike);
-            var newChatData = JsonSerializer.Serialize(chatData)!;
+            chat.Messages[messageNumber].Likes.Add(newLike);
 
-            File.WriteAllText(ChatRepository.filePath, newChatData);
+            var updatedChats = ChatService.GetUpdatedChatsData(chat);
+
 
             Logger.LogToConsole("Liked! You can keep chatting");
+            var chatRepository = new ChatRepository("data/chat-data.json");
+            chatRepository.WriteChatData(updatedChats);
+            // нужно добавить "Функцию записи чата"
         }
 
-        static int GetMessageNumber()
+        static int GetMessageNumber(Chat chat)
         {
-            var messageIndices = ChatService.ShowNumberedChatMessages();
+            var chatService = new ChatService();
+            var messageIndices = chatService.ShowNumberedChatMessages(chat);
 
             Logger.LogToConsole("Type in the number of the message you like: ");
             var number = Logger.GetInput();

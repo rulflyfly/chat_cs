@@ -1,10 +1,16 @@
-﻿namespace chat 
+﻿using chat.domain;
+
+namespace chat 
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            // infrastructure
+            var menuService = new MenuService();
 
+
+            // domain
             Logger.LogToConsole("Enter your name:");
 
             var userName = Logger.GetInput();
@@ -16,9 +22,16 @@
             }
             else
             {
-                Logger.LogToConsole("You can chat. To access menu type *MENU");
-                ChatActionsService.RunChat(user);
+                while (true)
+                {
+                    var chatName = ChatActionsService.PickChat();
+                    var chat = ChatService.GetCurrentChat(chatName);
+                    Logger.LogToConsole("You can chat. To access menu type *MENU, to exit chat type *EXIT");
+                    ChatActionsService.RunChat(user.Id, chat);
+                }
+                
             }
+
         }
     }
 }

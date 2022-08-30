@@ -4,23 +4,55 @@ namespace chat
 {
     public class MenuService
     {
-        public static void ManageMenuOptions(User user)
+        //public Chat GetChatByName(string chatNameUserInput)
+        //{
+
+        //    switch (chatNameUserInput)
+        //    {
+        //        case "*MAIN_CHAT":
+        //            var mainChatData = new ChatRepository("data/chat-data.json");
+        //            return mainChatData.ReadChatData();
+        //        case "*WORK_CHAT":
+        //            var workChatData = new ChatRepository("");
+        //            return workChatData.ReadChatData();
+        //    }
+        //    return null;
+        //}
+
+        //public string GetChatNameFromUser()
+        //{
+        //    Logger.LogToConsole("*MAIN_CHAT");
+        //    Logger.LogToConsole("*WORK_CHAT");
+
+        //    var option = Logger.GetInput();
+
+        //    while (option != "*MAIN_CHAT" &&
+        //           option != "*WORK_CHAT")
+        //    {
+        //        Logger.LogToConsole("Type *MAIN_CHAT or *WORK_CHAT");
+        //        option = Logger.GetInput();
+        //    }
+        //    return option;
+        //}
+        // еуые
+        public static void ManageMenuOptions(double userId, Chat chat)
         {
             var option = GetOption();
 
             switch (option)
             {
                 case "*ALL":
-                    ChatActionsService.ShowAllChatMessages(user);
+                    ChatActionsService.ShowAllChatMessages(userId, chat);
                     break;
                 case "*SEARCH":
-                    ChatActionsService.SearchByUserName(user);
+                    ChatActionsService.SearchByUserName(userId, chat);
                     break;
                 case "*EDIT_INFO":
-                    ChatActionsService.EditUserInfo(user);
+                    ChatActionsService.EditUserInfo(userId);
                     break;
                 case "*ADD_LIKE":
-                    LikeService.AddLikeToMessage(user);
+                    var likeService = new LikeService();
+                    likeService.AddLikeToMessage(userId, chat);
                     break;
                 case "*BACK":
                     return;

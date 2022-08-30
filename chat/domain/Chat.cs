@@ -1,6 +1,6 @@
 ﻿namespace chat.domain
 {
-    public record Chat (List<Message> Messages)
+    public record Chat (double Id, string Name, List<Message> Messages)
     {
         public List<Message> GetMessagesVisibleToUser(User activeUser)
         {
