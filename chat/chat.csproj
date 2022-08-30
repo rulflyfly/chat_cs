@@ -11,10 +11,12 @@
     <None Remove="data\" />
     <None Remove="domain\" />
     <None Remove="data\chat-data.json" />
+    <None Remove="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
     <Folder Include="domain\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
