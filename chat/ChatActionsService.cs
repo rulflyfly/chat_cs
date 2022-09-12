@@ -4,10 +4,22 @@ namespace chat
 {
     public class ChatActionsService
     {
-        public static void ShowAllChatMessages(double userId, Chat chat)
+        IChatService _chatService;
+        IChatRepository _chatRepository;
+        IMenuService _menuService;
+        ILikeService _likeService;
+
+        public ChatActionsService(IChatService chatService, IChatRepository chatRepository, IMenuService menuService, ILikeService likeService)
         {
-            var chatService = new ChatService();
-            var messages = chatService.GetAllMessages(userId, chat);
+            _chatService = chatService;
+            _chatRepository = chatRepository;
+            _menuService = menuService;
+            _likeService = likeService;
+        }
+
+        public void ShowAllChatMessages(double userId, Chat chat)
+        {
+            var messages = _chatService.GetAllMessages(userId, chat);
 
             foreach (var message in messages)
             {
@@ -16,7 +28,7 @@ namespace chat
             }
         }
 
-        public static void SearchByUserName(double userId, Chat chat)
+        public void SearchByUserName(double userId, Chat chat)
         {
             var askSearchUser = true;
 
@@ -25,9 +37,7 @@ namespace chat
                 Logger.LogToConsole("Type in user name: ");
                 var userName = Logger.GetInput();
 
-                var chatService = new ChatService();
-
-                var userMessages = chatService.GetUserMessages(userId, userName, chat);
+                var userMessages = _chatService.GetUserMessages(userId, userName, chat);
 
                 if (userMessages.Count == 0)
                 {
@@ -46,11 +56,10 @@ namespace chat
             }
         }
 
-        public static void ShowLoggedUserMessages(double userId, Chat chat)
+        public void ShowLoggedUserMessages(double userId, Chat chat)
         {
-            var chatService = new ChatService();
             var user = UserService.GetUserById(userId);
-            var messages = chatService.GetUserMessages(userId, user.Name, chat);
+            var messages = _chatService.GetUserMessages(userId, user.Name, chat);
             if (messages.Count == 0) return;
 
             foreach (var message in messages)
@@ -61,7 +70,7 @@ namespace chat
         }
 
 
-        public static void EditUserInfo(double userId)
+        public void EditUserInfo(double userId)
         {
             var user = UserService.GetUserById(userId);
             var editName = Logger.GetConsent("Edit user name?");
@@ -90,35 +99,34 @@ namespace chat
 
             Logger.LogToConsole("Successfully edited! You can keep chatting");
 
-            UserService.UpdateUserInfo(user);
+            UserRepository.EditUser(user);
         }
 
-        public static void RunChat(double userId, Chat chat)
+        public void RunChat(double userId, Chat chat)
         {
             while (true)
             {
                 var newMessage = Logger.GetInput();
                 if (newMessage == "*MENU")
                 {
-                    MenuService.ManageMenuOptions(userId, chat);
+                    ManageChatActions(userId, chat);
                 }
                 if (newMessage == "*EXIT")
                 {
                     break;
                 }
-                else
+                else if (newMessage != "*MENU")
                 {
-                    ChatService.WriteMessage(userId, newMessage, chat);
+                    _chatRepository.WriteMessage(userId, newMessage, chat);
                     ShowLoggedUserMessages(userId, chat);
                 }
 
             }
         }
 
-        public static string PickChat()
+        public string PickChat()
         {
-            var chatRepository = new ChatRepository("data/chat-data.json");
-            var chats = chatRepository.ReadChatData();
+            var chats = _chatRepository.ReadChatData();
 
             List<string> chatNames = new List<string>();
 
@@ -147,6 +155,40 @@ namespace chat
             }
 
             return pickedChatName;
+        }
+
+        public void ManageChatActions(double userId, Chat chat)
+        {
+            var option = _menuService.GetOption();
+            switch (option)
+            {
+                case "*ALL":
+                    ShowAllChatMessages(userId, chat);
+                    break;
+                case "*SEARCH":
+                    SearchByUserName(userId, chat);
+                    break;
+                case "*EDIT_INFO":
+                    EditUserInfo(userId);
+                    break;
+                case "*ADD_LIKE":
+                    _likeService.AddLikeToMessage(userId, chat);
+                    break;
+                case "*BACK":
+                    return;
+            }
+        }
+
+        public Chat GetCurrentChat(string chatName)
+        {
+            var chats = _chatRepository.ReadChatData();
+
+            foreach (var chat in chats)
+            {
+                if (chat.Name == chatName) return chat;
+            }
+
+            return null;
         }
     }
 }

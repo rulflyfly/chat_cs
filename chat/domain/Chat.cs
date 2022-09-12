@@ -2,7 +2,7 @@
 {
     public record Chat (double Id, string Name, List<Message> Messages)
     {
-        public List<Message> GetMessagesVisibleToUser(User activeUser)
+        public List<Message> GetMessagesVisibleToUser(IUser activeUser)
         {
             var visibleMessages = new List<Message>();
             foreach (var message in Messages)

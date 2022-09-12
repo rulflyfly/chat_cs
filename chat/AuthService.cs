@@ -39,7 +39,7 @@ namespace chat
                 bday = Logger.GetInput();
             }
 
-            return UserService.SingUpUser(name, bday);
+            return UserRepository.AddUser(name, bday);
         }
     }
 }

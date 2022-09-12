@@ -4,8 +4,15 @@ using chat;
 
 namespace chat
 {
-    public class LikeService
+    public class LikeService : ILikeService
     {
+        private IChatRepository _chatRepository;
+
+        public LikeService(IChatRepository chatRepository)
+        {
+            _chatRepository = chatRepository;
+        }
+
         public void AddLikeToMessage(double userId, Chat chat)
         {
             var messageNumber = GetMessageNumber(chat);
@@ -14,19 +21,16 @@ namespace chat
 
             chat.Messages[messageNumber].Likes.Add(newLike);
 
-            var updatedChats = ChatService.GetUpdatedChatsData(chat);
+            var updatedChats = _chatRepository.GetUpdatedChatsData(chat);
 
 
             Logger.LogToConsole("Liked! You can keep chatting");
-            var chatRepository = new ChatRepository("data/chat-data.json");
-            chatRepository.WriteChatData(updatedChats);
-            // нужно добавить "Функцию записи чата"
+            _chatRepository.WriteChatData(updatedChats);
         }
 
         static int GetMessageNumber(Chat chat)
         {
-            var chatService = new ChatService();
-            var messageIndices = chatService.ShowNumberedChatMessages(chat);
+            var messageIndices = ShowNumberedChatMessages(chat);
 
             Logger.LogToConsole("Type in the number of the message you like: ");
             var number = Logger.GetInput();
@@ -37,6 +41,19 @@ namespace chat
             }
 
             return Int32.Parse(number) - 1;
+        }
+
+
+        private static List<string> ShowNumberedChatMessages(Chat chat)
+        {
+            List<string> indices = new List<string>();
+
+            for (var i = 0; i < chat.Messages.Count; i++)
+            {
+                Logger.LogToConsole($"[{i + 1}] - {Utils.MakeMessageString(chat.Messages[i])}");
+                indices.Add($"{i + 1}");
+            }
+            return indices;
         }
     }
 }

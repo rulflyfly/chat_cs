@@ -9,15 +9,15 @@ public class ChatTests
         var user = new User(1) { Name = "Nastya", Birthday = "08/01/2020" };
 
         List<Like> likes = new();
-        var nutralMessage = new chat.domain.Message(1.0, "prtivet", likes, false);
-        var adultMessage = new chat.domain.Message(1.0, "explicit text", likes, true);
+        var nutralMessage = new Message(1.0, "prtivet", likes, false);
+        var adultMessage = new Message(1.0, "explicit text", likes, true);
 
         List<chat.domain.Message> messages = new();
         messages.Add(nutralMessage);
         messages.Add(adultMessage);
 
 
-        var chat = new Chat(messages);
+        var chat = new Chat(1, "Main Chat", messages);
 
 
         var filteredMessages = chat.GetMessagesVisibleToUser(user);
@@ -31,15 +31,15 @@ public class ChatTests
         var user = new User(1) { Name = "Nastya", Birthday = "08/01/1997" };
 
         List<Like> likes = new();
-        var nutralMessage = new chat.domain.Message(1.0, "prtivet", likes, false);
-        var adultMessage = new chat.domain.Message(1.0, "explicit text", likes, true);
+        var nutralMessage = new Message(1.0, "prtivet", likes, false);
+        var adultMessage = new Message(1.0, "explicit text", likes, true);
 
         List<chat.domain.Message> messages = new();
         messages.Add(nutralMessage);
         messages.Add(adultMessage);
 
 
-        var chat = new Chat(messages);
+        var chat = new Chat(1, "Main Chat", messages);
 
 
         var filteredMessages = chat.GetMessagesVisibleToUser(user);
@@ -48,6 +48,3 @@ public class ChatTests
         CollectionAssert.Contains(filteredMessages, adultMessage);
     }
 }
-
-
-public record Message(double UserId, string Text, List<Like> Likes, bool NSFW);

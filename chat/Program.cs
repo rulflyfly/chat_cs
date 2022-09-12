@@ -24,14 +24,25 @@ namespace chat
             {
                 while (true)
                 {
-                    var chatName = ChatActionsService.PickChat();
-                    var chat = ChatService.GetCurrentChat(chatName);
+                    var chatActionService = Compose();
+                    var chatName = chatActionService.PickChat();
+                    var chat = chatActionService.GetCurrentChat(chatName);
                     Logger.LogToConsole("You can chat. To access menu type *MENU, to exit chat type *EXIT");
-                    ChatActionsService.RunChat(user.Id, chat);
+                    chatActionService.RunChat(user.Id, chat);
                 }
                 
             }
 
+        }
+
+        private static ChatActionsService Compose()
+        {
+            var chatRepository = new ChatRepository();
+            var chatService = new ChatService();
+            var menuService = new MenuService();
+            var likeService = new LikeService(chatRepository);
+
+            return new ChatActionsService(chatService, chatRepository, menuService, likeService);
         }
     }
 }
