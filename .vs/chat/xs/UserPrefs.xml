@@ -1,16 +1,36 @@
-﻿<Properties StartupConfiguration="{E34D256C-135B-4BEC-883B-9EADC6BD28CD}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="chat/Program.cs">
+﻿<Properties StartupConfiguration="{27A57384-C0C0-4500-B32B-5C788F5C2300}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChatAPI/Controllers/ChatController.cs">
     <Files>
-      <File FileName="chat/MenuService.cs" Line="13" Column="58" IsPinned="True" />
-      <File FileName="chat/Program.cs" Line="30" Column="56" IsPinned="True" />
-      <File FileName="chat/domain/LikeService.cs" IsPinned="True" />
-      <File FileName="chat/domain/ChatService.cs" />
-      <File FileName="chat/Utils.cs" />
-      <File FileName="chat/ChatRepository.cs" />
-      <File FileName="chat/ChatActionsService.cs" Line="109" Column="1" />
-      <File FileName="chat/domain/User.cs" />
-      <File FileName="chat/data/chat-data.json" />
-      <File FileName="chat/AuthService.cs" />
+      <File FileName="chat/MenuService.cs" Line="16" Column="1" />
+      <File FileName="chat/Program.cs" Line="34" Column="14" />
+      <File FileName="chat/domain/LikeService.cs" Line="9" Column="9" />
+      <File FileName="chat/domain/ChatService.cs" Line="15" Column="15" />
+      <File FileName="chat/Utils.cs" Line="39" Column="6" />
+      <File FileName="chat/ChatActionsService.cs" Line="158" Column="10" />
+      <File FileName="chat/domain/User.cs" Line="3" Column="43" />
+      <File FileName="chat/data/chat-data.json" Line="1" Column="41" />
+      <File FileName="chat/AuthService.cs" Line="44" Column="6" />
+      <File FileName="chat/domain/Chat.cs" Line="21" Column="1" />
+      <File FileName="chat/domain/IUser.cs" Line="5" Column="24" />
+      <File FileName="chat/domain/UserService.cs" Line="37" Column="6" />
+      <File FileName="chat/domain/IChatService.cs" Line="5" Column="9" />
+      <File FileName="chat/domain/IUserService.cs" Line="5" Column="35" />
+      <File FileName="chat/domain/Like.cs" Line="1" Column="1" />
+      <File FileName="chat/Infrastructure/UserRepository.cs" Line="42" Column="1" />
+      <File FileName="chat/domain/Message.cs" Line="1" Column="1" />
+      <File FileName="chat/Logger.cs" Line="1" Column="1" />
+      <File FileName="chat/IChatActionsService.cs" Line="9" Column="60" />
+      <File FileName="chat/IMenuService.cs" Line="7" Column="16" />
+      <File FileName="chat.tests/ChatTests.cs" Line="42" Column="53" />
+      <File FileName="chat.tests/UserTests.cs" Line="1" Column="1" />
+      <File FileName="chat.tests/Usings.cs" Line="1" Column="1" />
+      <File FileName="ChatAPI/Controllers/ChatController.cs" Line="42" Column="50" />
+      <File FileName="ChatAPI/Program.cs" Line="20" Column="11" />
+      <File FileName="ChatAPI/Properties/launchSettings.json" Line="24" Column="25" />
+      <File FileName="chat/Infrastructure/ChatRepository.cs" Line="23" Column="1" />
+      <File FileName="chat/domain/ILikeService.cs" Line="1" Column="1" />
+      <File FileName="chat/Infrastructure/IChatRepository.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,10 +39,17 @@
             <Node name="chat" expanded="True">
               <Node name="data" expanded="True" />
               <Node name="domain" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="Infrastructure" expanded="True" />
+            </Node>
+            <Node name="ChatAPI" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
@@ -32,12 +59,10 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ChatAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/menswear/Desktop/chat_cs2/chat_cs/chat/ChatActionsService.cs" relfile="chat/ChatActionsService.cs" line="74" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
