@@ -14,9 +14,25 @@ namespace chat
             return chatData;
         }
 
-        public void WriteChatData(List<Chat> newChatData)
+        public List<Chat> GetUpdatedChatsData(Chat updatedChat)
         {
-            var newData = JsonSerializer.Serialize(newChatData)!;
+            var chats = ReadChatData();
+
+            foreach (var chat in chats)
+            {
+                if (chat.Name == updatedChat.Name)
+                {
+                    chats[chats.IndexOf(chat)] = updatedChat;
+                    break;
+                }
+            }
+
+            return chats;
+        }
+
+        public void WriteChatData(List<Chat> chats)
+        {
+            var newData = JsonSerializer.Serialize(chats)!;
 
             File.WriteAllText(filePath, newData);
         }
@@ -34,22 +50,6 @@ namespace chat
 
 
             File.WriteAllText(filePath, newChatData);
-        }
-
-        public List<Chat> GetUpdatedChatsData(Chat updatedChat)
-        {
-            var chats = ReadChatData();
-
-            foreach (var chat in chats)
-            {
-                if (chat.Name == updatedChat.Name)
-                {
-                    chats[chats.IndexOf(chat)] = updatedChat;
-                    break;
-                }
-            }
-
-            return chats;
         }
     }
 }

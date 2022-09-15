@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ChatAPI/1.0.0": {
+        "dependencies": {
+          "chat": "1.0.0"
+        },
+        "runtime": {
+          "ChatAPI.dll": {}
+        }
+      },
+      "chat/1.0.0": {
+        "runtime": {
+          "chat.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ChatAPI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "chat/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
