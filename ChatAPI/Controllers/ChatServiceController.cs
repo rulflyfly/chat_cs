@@ -36,9 +36,9 @@ namespace ChatAPI.Controllers
             return chatService.GetAllMessages(Convert.ToDouble(userId), chat);
         }
 
-        // GET api/chatservice/search/1/1
-        [HttpGet("search/{chatId}/{userId}")]
-        public List<Message> GetUserMessages(int chatId, int userId, [FromBody] string searchName)
+        // GET api/chatservice/1/1/searchName
+        [HttpGet("{chatId}/{userId}/{searchName}")]
+        public List<Message> GetUserMessages(int chatId, int userId, string searchName)
         {
             var chats = _chatRepository.ReadChatData();
 
