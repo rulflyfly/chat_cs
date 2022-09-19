@@ -1,6 +1,10 @@
 ﻿<Properties StartupConfiguration="{27A57384-C0C0-4500-B32B-5C788F5C2300}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ChatAPI/Controllers/ChatController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ChatAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="chat/domain/Chat.cs">
     <Files>
       <File FileName="chat/MenuService.cs" Line="16" Column="1" />
       <File FileName="chat/Program.cs" Line="34" Column="14" />
@@ -25,25 +29,17 @@
       <File FileName="chat.tests/ChatTests.cs" Line="42" Column="53" />
       <File FileName="chat.tests/UserTests.cs" Line="1" Column="1" />
       <File FileName="chat.tests/Usings.cs" Line="1" Column="1" />
-      <File FileName="ChatAPI/Controllers/ChatController.cs" Line="42" Column="50" />
-      <File FileName="ChatAPI/Program.cs" Line="20" Column="11" />
-      <File FileName="ChatAPI/Properties/launchSettings.json" Line="24" Column="25" />
-      <File FileName="chat/Infrastructure/ChatRepository.cs" Line="23" Column="1" />
+      <File FileName="chat/Infrastructure/ChatRepository.cs" Line="42" Column="25" />
       <File FileName="chat/domain/ILikeService.cs" Line="1" Column="1" />
-      <File FileName="chat/Infrastructure/IChatRepository.cs" Line="1" Column="1" />
+      <File FileName="chat/Infrastructure/IChatRepository.cs" Line="8" Column="13" />
+      <File FileName="chat/data/users-data.json" Line="1" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="chat" expanded="True">
             <Node name="chat" expanded="True">
-              <Node name="data" expanded="True" />
               <Node name="domain" expanded="True" />
-              <Node name="Infrastructure" expanded="True" />
-            </Node>
-            <Node name="ChatAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -58,10 +54,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.chat PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.ItemProperties.ChatAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
