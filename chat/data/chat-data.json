@@ -4,6 +4,7 @@
     "Name": "Main Chat",
     "Messages": [
       {
+        "Id": 1,
         "UserId": 5295,
         "Text": "yeto",
         "Likes": [],
@@ -16,18 +17,21 @@
     "Name": "Second Chat",
     "Messages": [
       {
+        "Id": 1,
         "UserId": 5295,
         "Text": "I didn\u0027t get it",
         "Likes": [],
         "NSFW": false
       },
       {
+        "Id": 2,
         "UserId": 5295,
         "Text": "I didn\u0027t get it",
         "Likes": [],
         "NSFW": false
       },
       {
+        "Id": 3,
         "UserId": 5295,
         "Text": "I got it!!!",
         "Likes": [],

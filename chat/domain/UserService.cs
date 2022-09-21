@@ -2,37 +2,31 @@
 
 namespace chat.domain
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        public static List<User> GetAllUsers()
-        {
-            var allUsers = UserRepository.ReadUserData();
+        private IUserRepository _userRepository;
 
-            return allUsers;
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
         }
 
-        public static User GetUserById(double userId)
+        public void EditUserName(int userId, string newName)
         {
-            var users = GetAllUsers();
+            var user = _userRepository.GetUserById(userId);
+            
+            user.Name = newName;
 
-            foreach (var user in users)
-            {
-                if (user.Id == userId) return user;
-            }
-
-            return null;
+            _userRepository.EditUser(user);
         }
 
-        public static User GetUserByName(string name)
+        public void EditUserBDay(int userId, string newbDay)
         {
-            var users = GetAllUsers();
+            var user = _userRepository.GetUserById(userId);
 
-            foreach (var user in users)
-            {
-                if (user.Name == name) return user;
-            }
+            user.Birthday = newbDay;
 
-            return null;
+            _userRepository.EditUser(user);
         }
     }
 }

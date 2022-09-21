@@ -1,6 +1,6 @@
 ﻿namespace chat.domain
 {
-    public record User (double Id) : IUser
+    public record User (int Id) : IUser
     {
         public string Name { get; set; }
         public string Birthday { get; set; }

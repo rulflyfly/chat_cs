@@ -3,29 +3,36 @@ namespace chat.domain
 {
     public class ChatService : IChatService
     {
+        private IChatRepository _chatRepository;
+        private IUserRepository _userRepository;
 
-        public List<Message> GetAllMessages(double userId, Chat chat)
+        public ChatService(IChatRepository chatRepository, IUserRepository userRepository)
         {
-            var user = UserService.GetUserById(userId);
+            _chatRepository = chatRepository;
+            _userRepository = userRepository;
+        }
+
+        public List<Message> GetAllMessages(int userId, int chatId)
+        {
+            var chat = _chatRepository.GetChatById(chatId);
+            var user = _userRepository.GetUserById(userId);
             var messages = chat.GetMessagesVisibleToUser(user);
 
             return messages;
         }
 
-        public List<Message> GetUserMessages(double userId, string searchName, Chat chat)
+        public List<Message> GetUserMessages(int chatId, int userId, string searchName)
         {
-            var allMessages = GetAllMessages(userId, chat);
-            var filtered = new List<Message>();
+            var chat = _chatRepository.GetChatById(chatId);
+            var user = _userRepository.GetUserById(userId);
+            var users = _userRepository.GetAllUsers();
 
-            foreach (var message in allMessages)
-            {
-                if (UserService.GetUserById(message.UserId).Name == searchName)
-                {
-                    filtered.Add(message);
-                }
-            }
+            return chat.FilterMessagesByUserName(user, users, searchName);
+        }
 
-            return filtered;
+        public void WriteMessage(int chatId, int userId, string text)
+        {
+            _chatRepository.WriteMessage(chatId, userId, text);
         }
     }
 }

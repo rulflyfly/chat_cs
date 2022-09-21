@@ -26,9 +26,8 @@ namespace chat
             return (zeroTime + span).Year - 1;
         }
 
-        public static string MakeMessageString(Message message)
+        public static string MakeMessageString(Message message, string userName)
         {
-            var userName = UserService.GetUserById(message.UserId).Name;
             return $"{userName}: {message.Text}; (likes: {message.Likes.Count})";
         }
 

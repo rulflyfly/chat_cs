@@ -2,6 +2,7 @@
 {
     public interface IUserService
     {
-        User GetUserById(double id);
+        void EditUserName(int userId, string newName);
+        void EditUserBDay(int userId, string newbDay);
     }
 }

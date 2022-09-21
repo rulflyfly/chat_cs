@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using chat.domain;
 
 namespace chat
@@ -12,6 +13,23 @@ namespace chat
             var jsonString = File.ReadAllText(filePath);
             var chatData = JsonSerializer.Deserialize<List<Chat>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, WriteIndented = true });
             return chatData;
+        }
+
+        public Chat GetChatById(int chatId)
+        {
+            var chats = ReadChatData();
+            var _chat = new Chat(0, null, null);
+            foreach (var chat in chats)
+            {
+                if (chat.Id == Convert.ToDouble(chatId))
+                {
+                    _chat = chat;
+                }
+            }
+
+            if (_chat.Id == 0) return null;
+
+            return _chat;
         }
 
         public List<Chat> GetUpdatedChatsData(Chat updatedChat)
@@ -37,12 +55,14 @@ namespace chat
             File.WriteAllText(filePath, newData);
         }
 
-        public void WriteMessage(double userId, string text, Chat chat)
+        public void WriteMessage(int chatId, int userId, string text)
         {
             var likes = new List<Like>();
-            var newMessage = new Message(userId, text, likes, false);
+            Random rnd = new Random();
+            var messageId = rnd.Next(9999);
+            var newMessage = new Message(messageId, userId, text, likes, false);
 
-            var updatedChat = chat;
+            var updatedChat = GetChatById(chatId);
 
             updatedChat.Messages.Add(newMessage);
 
@@ -51,5 +71,6 @@ namespace chat
 
             File.WriteAllText(filePath, newChatData);
         }
+
     }
 }

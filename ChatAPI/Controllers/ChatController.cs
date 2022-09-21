@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using chat.domain;
-using ChatAPI.Utils;
+﻿using chat.domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatAPI.Controllers
@@ -11,24 +6,32 @@ namespace ChatAPI.Controllers
     [Route("api/[controller]")]
     public class ChatController : Controller
     {
-        private IChatRepository _chatRepository;
+        private IChatService _chatService;
 
-        public ChatController(IChatRepository chatRepository)
+        public ChatController(IChatService chatService)
         {
-            _chatRepository = chatRepository;
+            _chatService = chatService;
         }
 
-        // GET: api/chat/1
-        [HttpGet("{id}")]
-        public List<Message> GetMessagesVisibleToUser(int id, [FromBody] User user)
+        // GET api/chat
+        [HttpGet]
+        public string Start()
         {
-            var chats = _chatRepository.ReadChatData();
+            return "try this in postman :)";
+        }
 
-            var chat = ChatApiUtils.FilterChatsById(chats, id);
+        // GET api/chat/1/user/1
+        [HttpGet("{chatId}/user/{userId}")]
+        public List<Message> GetAllMessages(int chatId, int userId)
+        {
+            return _chatService.GetAllMessages(userId, chatId);
+        }
 
-            if (chat == null) return null;
-
-            return chat.GetMessagesVisibleToUser(user);
+        // GET api/chat/1/user/1/Nastya
+        [HttpGet("{chatId}/user/{userId}/{searchName}")]
+        public List<Message> GetUserMessages(int chatId, int userId, string searchName)
+        {
+            return _chatService.GetUserMessages(chatId, userId, searchName);
         }
     }
 }

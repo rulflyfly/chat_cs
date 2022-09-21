@@ -4,6 +4,6 @@ namespace chat
 {
     public interface ILikeService
     {
-        void AddLikeToMessage(double userId, Chat chat);
+        void AddLikeToMessage(int userId, int chatId, int messageId);
     }
 }

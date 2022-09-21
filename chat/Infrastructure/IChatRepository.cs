@@ -5,6 +5,7 @@
         List<Chat> ReadChatData();
         List<Chat> GetUpdatedChatsData(Chat chat);
         void WriteChatData(List<Chat> chats);
-        void WriteMessage(double userId, string newMessage, Chat chat);
+        void WriteMessage(int chatId, int userId, string text);
+        Chat GetChatById(int chatId);
     }
 }

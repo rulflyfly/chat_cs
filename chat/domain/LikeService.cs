@@ -13,47 +13,18 @@ namespace chat
             _chatRepository = chatRepository;
         }
 
-        public void AddLikeToMessage(double userId, Chat chat)
+        public void AddLikeToMessage(int userId, int chatId, int messageId)
         {
-            var messageNumber = GetMessageNumber(chat);
+            var chat = _chatRepository.GetChatById(chatId);
 
-            var newLike = new Like(Convert.ToString(userId));
+            var newLike = new Like(userId);
+            var messageIndex = chat.FindMessageIndexByMessageId(messageId);
 
-            chat.Messages[messageNumber].Likes.Add(newLike);
+            chat.Messages[messageIndex].Likes.Add(newLike);
 
             var updatedChats = _chatRepository.GetUpdatedChatsData(chat);
 
-
-            Logger.LogToConsole("Liked! You can keep chatting");
             _chatRepository.WriteChatData(updatedChats);
-        }
-
-        static int GetMessageNumber(Chat chat)
-        {
-            var messageIndices = ShowNumberedChatMessages(chat);
-
-            Logger.LogToConsole("Type in the number of the message you like: ");
-            var number = Logger.GetInput();
-            while (!messageIndices.Contains(number))
-            {
-                Logger.LogToConsole("No message with this number. Try again: ");
-                number = Logger.GetInput();
-            }
-
-            return Int32.Parse(number) - 1;
-        }
-
-
-        private static List<string> ShowNumberedChatMessages(Chat chat)
-        {
-            List<string> indices = new List<string>();
-
-            for (var i = 0; i < chat.Messages.Count; i++)
-            {
-                Logger.LogToConsole($"[{i + 1}] - {Utils.MakeMessageString(chat.Messages[i])}");
-                indices.Add($"{i + 1}");
-            }
-            return indices;
         }
     }
 }

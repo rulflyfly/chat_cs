@@ -12,7 +12,7 @@
     "ChatAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/example",
+      "launchUrl": "api/chat",
       "applicationUrl": "http://localhost:5074",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -21,7 +21,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/example",
+      "launchUrl": "api/chat",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

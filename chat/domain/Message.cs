@@ -1,5 +1,5 @@
 ﻿namespace chat.domain
 {
-    public record Message (double UserId, string Text, List<Like> Likes, bool NSFW);
+    public record Message (int Id, int UserId, string Text, List<Like> Likes, bool NSFW);
 }
 

@@ -2,7 +2,7 @@
 {
     public interface IChatService
     {
-        List<Message> GetAllMessages(double userId, Chat chat);
-        List<Message> GetUserMessages(double userId, string userName, Chat chat);
+        List<Message> GetAllMessages(int userId, int chatId);
+        List<Message> GetUserMessages(int chatId, int userId, string searchName);
     }
 }
