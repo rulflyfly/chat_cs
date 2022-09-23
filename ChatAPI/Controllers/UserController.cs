@@ -22,17 +22,18 @@ namespace ChatAPI.Controllers
         {
             public string Text { get; set; }
         }
-        // PUT api/user/5295/change/username
-        [HttpPut("{userId}/change/userName")]
-        public void Put(int userId, [FromBody] Config config)
+
+        // PUT api/user/5295/edit/username
+        [HttpPut("{userId}/edit/username")]
+        public void EditUserName(int userId, [FromBody] Config config)
         {
             var userName = config.Text;
             _userService.EditUserName(userId, userName);
         }
 
-        // PUT api/user/5295/
-        [HttpPut("{userId}/change/userdate")]
-        public void PutNewDate(int userId, [FromBody] Config config)
+        // PUT api/user/5295/edit/birthday
+        [HttpPut("{userId}/edit/birthday")]
+        public void EditUserBDay(int userId, [FromBody] Config config)
         {
             var newDate = config.Text;
             _userService.EditUserBDay(userId, newDate);

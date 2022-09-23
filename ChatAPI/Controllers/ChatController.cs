@@ -41,17 +41,17 @@ namespace ChatAPI.Controllers
             return _chatService.GetUserMessages(chatId, userId, searchName);
         }
 
-        // PUT api/chat/1/user/1/message
-        [HttpPut("{chatId}/user/{userId}/{message}")]
-        public void PutMessage(int chatId, int userId, [FromBody] Config config)
+        // PUT api/chat/1/user/5295/message
+        [HttpPut("{chatId}/user/{userId}/message")]
+        public void WriteMessage(int chatId, int userId, [FromBody] Config config)
         {
             var newMessage = config.Text;
             _chatService.WriteMessage(chatId, userId, newMessage);
         }
 
-        // Put Like api/chat/2/user/5295/likeMessage/2
+        // PUT api/chat/2/user/5295/likemessage/2
         [HttpPut("{chatId}/user/{userId}/likemessage/{messageId}")]
-        public void PostLike(int chatId, int userId, int messageId)
+        public void AddLikeToMessage(int chatId, int userId, int messageId)
         {
             _likeservice.AddLikeToMessage(userId, chatId, messageId);       
         }
