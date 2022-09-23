@@ -7,7 +7,7 @@
             var visibleMessages = new List<Message>();
             foreach (var message in Messages)
             {
-                if (!message.NSFW || activeUser.IsAdult())
+                if (message.NSFW != true && activeUser.IsAdult())
                 {
                     visibleMessages.Add(message);
                 }

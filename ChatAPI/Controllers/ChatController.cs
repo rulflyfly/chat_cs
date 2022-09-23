@@ -1,4 +1,5 @@
-﻿using chat.domain;
+﻿using chat;
+using chat.domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatAPI.Controllers
@@ -7,12 +8,18 @@ namespace ChatAPI.Controllers
     public class ChatController : Controller
     {
         private IChatService _chatService;
+        private ILikeService _likeservice;
 
-        public ChatController(IChatService chatService)
+        public ChatController(IChatService chatService, ILikeService likeService)
         {
             _chatService = chatService;
+            _likeservice = likeService;
         }
 
+        public class Config
+        {
+            public string Text { get; set; }
+        }
         // GET api/chat
         [HttpGet]
         public string Start()
@@ -32,6 +39,21 @@ namespace ChatAPI.Controllers
         public List<Message> GetUserMessages(int chatId, int userId, string searchName)
         {
             return _chatService.GetUserMessages(chatId, userId, searchName);
+        }
+
+        // PUT api/chat/1/user/5295/message
+        [HttpPut("{chatId}/user/{userId}/message")]
+        public void WriteMessage(int chatId, int userId, [FromBody] Config config)
+        {
+            var newMessage = config.Text;
+            _chatService.WriteMessage(chatId, userId, newMessage);
+        }
+
+        // PUT api/chat/2/user/5295/likemessage/2
+        [HttpPut("{chatId}/user/{userId}/likemessage/{messageId}")]
+        public void AddLikeToMessage(int chatId, int userId, int messageId)
+        {
+            _likeservice.AddLikeToMessage(userId, chatId, messageId);       
         }
     }
 }
